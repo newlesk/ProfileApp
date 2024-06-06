@@ -1,61 +1,29 @@
 import React from 'react';
-import { View, Text, Image, TextInput, ScrollView, StyleSheet } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { View, Text, Button, StyleSheet } from 'react-native';
+import MainScreen from './MainScreen';
+import Home from './Home';
 
-export default function App() {
+const Stack = createStackNavigator();
+
+function App() {
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.profileContainer}>
-        <Image
-          style={styles.profileImage}
-          source={{ uri: 'https://cdn-icons-png.flaticon.com/512/1503/1503151.png' }} // แทนที่ URL ด้วยลิงก์รูปภาพของคุณ
-        />
-        <Text style={styles.profileName}>ชื่อ: สมชาย ใจดี</Text>
-        <Text style={styles.profileDetail}>ตำแหน่ง: นักพัฒนาโปรแกรม</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="อีเมล"
-          keyboardType="email-address"
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="เบอร์โทรศัพท์"
-          keyboardType="phone-pad"
-        />
-      </View>
-    </ScrollView>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Main">
+        <Stack.Screen name="Main" component={MainScreen} />
+        <Stack.Screen name="Home" component={Home} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
+
+export default App;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-  },
-  profileContainer: {
+    justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 50,
-  },
-  profileImage: {
-    width: 150,
-    height: 150,
-    borderRadius: 75,
-  },
-  profileName: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginVertical: 10,
-  },
-  profileDetail: {
-    fontSize: 18,
-    color: '#555',
-  },
-  input: {
-    height: 40,
-    borderColor: '#ccc',
-    borderWidth: 1,
-    borderRadius: 5,
-    marginVertical: 10,
-    paddingHorizontal: 10,
-    width: '80%',
   },
 });
