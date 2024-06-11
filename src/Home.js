@@ -1,7 +1,10 @@
 import React from 'react';
-import { View, Text, Image, TextInput, ScrollView, StyleSheet, Button } from 'react-native';
+import { View, Text, Image, TextInput, ScrollView, StyleSheet } from 'react-native';
+import ProfileButton from './components/ProfileButton'; // ตรวจสอบ path ให้ถูกต้อง
 
-export default function Home({ navigation }) {
+export default function Home({ navigation, route }) {
+  const { email = '', phone = '' } = route.params || {}; // รับข้อมูลจาก route parameters
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.profileContainer}>
@@ -14,14 +17,16 @@ export default function Home({ navigation }) {
         <TextInput
           style={styles.input}
           placeholder="อีเมล"
-          keyboardType="email-address"
+          value={email}
+          editable={false}
         />
         <TextInput
           style={styles.input}
           placeholder="เบอร์โทรศัพท์"
-          keyboardType="phone-pad"
+          value={phone}
+          editable={false}
         />
-        <Button
+        <ProfileButton
           title="กลับไปหน้าหลัก"
           onPress={() => navigation.navigate('Main')}
         />
