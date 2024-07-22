@@ -1,12 +1,14 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useState } from 'react';
+import Person from './components/Person';
 
 export default function MainScreen({ navigation }) {
   const [name, setName] = useState('KruNew');
   const [age, setAge] = useState(26);
   return (
     <View style={styles.container}>
+      <Person name={"Krittipong"} age={26}/>
       <Text style={styles.header}>Portfolio{name}</Text>
       <TouchableOpacity onPress={()=>setName("Krittipong")}>
         <Text >เปลี่ยนชื่อ</Text>
@@ -44,7 +46,7 @@ export default function MainScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#2E2E2E',
+    backgroundColor: '#fff',
     padding: 20,
   },
   header: {
